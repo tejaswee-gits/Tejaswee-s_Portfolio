@@ -702,6 +702,7 @@
             }
 
             /* Rebound */
+            /* Rebound */
             100% {
                 transform: scale(1, 1) translateY(0);
             }
@@ -710,6 +711,64 @@
         .bounce-active {
             animation: pixarJump 0.8s ease-in-out infinite;
             animation-iteration-count: infinite;
+        }
+
+        /* Intro Loading Bar */
+        .intro-loading-bar-container {
+            width: 200px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            margin: 20px auto 0;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInBar 0.5s ease forwards 0.2s;
+        }
+
+        .intro-loading-bar {
+            height: 100%;
+            width: 0%;
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            /* Sync with letters: T lands ~0.7s, P lands ~1.0s */
+            animation: impactFill 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeInBar {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes impactFill {
+            0% {
+                width: 0%;
+            }
+
+            40% {
+                width: 0%;
+            }
+
+            /* Wait for T */
+            45% {
+                width: 50%;
+            }
+
+            /* T lands (Impact!) */
+            60% {
+                width: 50%;
+            }
+
+            /* Wait for P */
+            65% {
+                width: 100%;
+            }
+
+            /* P lands (Impact!) */
+            100% {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -722,6 +781,10 @@
             <h1 class="intro-text-container" id="intro-text-container">
                 <!-- Text injected via JS for per-character animation -->
             </h1>
+            <!-- Loading Bar -->
+            <div class="intro-loading-bar-container">
+                <div class="intro-loading-bar"></div>
+            </div>
         </div>
     </div>
 
