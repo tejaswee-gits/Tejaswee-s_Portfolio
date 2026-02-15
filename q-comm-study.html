@@ -156,8 +156,28 @@
                 <div class="w-20 h-1.5 bg-indigo-insight rounded-full"></div>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="glass p-6 rounded-2xl border border-white/10 h-[400px]">
-                    <canvas id="pyramidChart"></canvas>
+                <!-- Custom CSS Pyramid Chart -->
+                <div class="relative w-full h-[400px] flex items-end justify-center">
+                    <!-- Base Pyramid -->
+                    <div class="relative w-full max-w-[400px] h-[350px]">
+                        <!-- Main Triangle Body -->
+                        <div class="absolute inset-0 bg-gradient-to-b from-indigo-900/50 to-slate-900 clip-path-triangle opacity-80"
+                            style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
+
+                        <!-- Top Highlight Section (India 1) -->
+                        <div class="absolute top-0 left-0 right-0 h-[35%] bg-gradient-to-b from-indigo-500 to-indigo-600 shadow-[0_0_30px_rgba(99,102,241,0.5)] z-10 flex items-center justify-center"
+                            style="clip-path: polygon(50% 0%, 15% 100%, 85% 100%);">
+                            <span class="text-white font-black tracking-tighter text-sm mt-8 opacity-90">INDIA 1</span>
+                        </div>
+
+                        <!-- Floating Label 120M -->
+                        <div
+                            class="absolute top-[10%] right-[-20%] md:right-[-40px] glass px-6 py-4 rounded-xl border-l-4 border-indigo-500 animate-pulse">
+                            <h3 class="text-3xl font-black text-white leading-none">120M</h3>
+                            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Active
+                                Addressable Users</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="grid grid-cols-1 gap-6">
                     <div
@@ -473,46 +493,9 @@
     </footer>
     <!-- Chart Initialization Scripts -->
     <script>
-        // 1. Pyramid Chart
-        const ctxPyramid = document.getElementById('pyramidChart').getContext('2d');
-        new Chart(ctxPyramid, {
-            type: 'bar',
-            data: {
-                labels: ['India 1 (Rich)', 'India 2 (Middle)', 'India 3 (Mass)'],
-                datasets: [{
-                    label: 'Population (Millions)',
-                    data: [120, 100, 1100],
-                    backgroundColor: ['#10b981', '#475569', '#334155'], // Emerald for India 1
-                    borderColor: ['#10b981', '#475569', '#334155'],
-                    borderWidth: 1,
-                    barPercentage: 0.9,
-                    categoryPercentage: 0.9
-                }]
-            },
-            options: {
-                indexAxis: 'y', // Horizontal bars make it look more like strata
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        callbacks: {
-                            label: function (context) { return `${context.raw} Million Users`; }
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                        ticks: { color: '#94a3b8' }
-                    },
-                    y: {
-                        grid: { display: false },
-                        ticks: { color: '#fff', font: { weight: 'bold' } }
-                    }
-                }
-            }
-        });
+        // 1. Pyramid Chart - Deplaced by CSS Visual
+
+        // 2. Radar Chart
 
         // 2. Radar Chart
         const ctxRadar = document.getElementById('radarChart').getContext('2d');
